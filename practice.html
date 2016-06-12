@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements.  See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership.  The ASF licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License.  You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing,
+ software distributed under the License is distributed on an
+ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ KIND, either express or implied.  See the License for the
+ specific language governing permissions and limitations
+ under the License.
+ -->
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Whale Explorer</title>
+		<script>
+			
+			var arrOptionNames = ["Beaked Whale",
+								"Beluga Whale",
+								"Blue Whale",
+								"Bowhead Whale",
+								"Fin Whale",
+								"Humpback Whale",
+								"Killer Whale",
+								"Narwhal",
+								"Right Whale",
+								"Sperm Whale"
+								];
+			var arrOptionClean = ["beakedwhale",
+								"belugawhale",
+								"bluewhale",
+								"bowheadwhale",
+								"finwhale",
+								"humpbackwhale",
+								"killerwhale",
+								"narwhal",
+								"rightwhale",
+								"spermwhale"
+								];
+			
+			function preventBehavior(e)
+			{
+				e.preventDefault();
+			};
+			
+			function funSuccess(){
+				//
+			}
+			
+			function funError(){
+				//
+			}
+			
+			function funOptionCleanToDirty(inc_clean){
+				strOptionDirty = "";
+				for (var i=0;i<arrOptionClean.length;i++)
+				{
+					if(arrOptionClean[i] == inc_clean){
+						strOptionDirty = arrOptionNames[i];
+					}
+				}
+				return strOptionDirty;
+			}
+			
+			
+			function funHome(){
+				window.location.href = "index.html";
+			}
+			
+			function funStart(){
+				document.getElementById("div_home_button").addEventListener('touchend', function(){funHome();}, false);
+				for (var i=0;i<arrOptionClean.length;i++)
+				{
+					document.getElementById("div_option_" + arrOptionClean[i]).addEventListener('touchstart', funWhaleTap, false);
+					document.getElementById("div_option_" + arrOptionClean[i]).addEventListener('webkitAnimationEnd', funWhaleReset, false);
+				}
+				document.getElementById("div_prompt").innerHTML = "Tap a Whale";
+				mp3Start = new Media("sounds/tapawhale.aiff", funSuccess, funError);
+				mp3Start.play();
+			}
+			
+			
+			
+			function funWhaleTap(e){
+				strWhaleClean = e.target.id;
+				strWhaleClean = strWhaleClean.replace("div_option_","");
+				strWhaleDirty = funOptionCleanToDirty(strWhaleClean);
+				document.getElementById(e.target.id).removeEventListener('touchstart', funWhaleTap, false);
+				document.getElementById("div_prompt").innerHTML = strWhaleDirty;
+				document.getElementById(e.target.id).className = "div_option_move";
+				mp3Start = new Media("sounds/" + strWhaleClean + ".aiff", funSuccess, funError);
+				mp3Start.play();
+			}
+			
+			function funWhaleReset(e){
+				document.getElementById(e.target.id).className = "";
+				document.getElementById(e.target.id).addEventListener('touchstart', funWhaleTap, false);
+			}
+			
+			</script>
+		<style>
+			body, div, img{
+				margin: 0px;
+				padding: 0px;
+				
+			}
+			#div_container{
+				background: url('img/background.png');
+				background-size: 100%;
+				width: 1024px;
+				height: 748px;
+			}
+			
+			
+			#div_home_button{
+				background: url('img/home.png');
+				background-size: 100%;
+				width: 210px;
+				height: 118px;
+				position: absolute;
+				top: 630px;
+				left: 702px;
+			}
+			#div_prompt{
+				width: 440px;
+				height: 110px;
+				position: absolute;
+				top: 630px;
+				left: 207px;
+				padding: 20px;
+				text-align: center;
+				font-size: 40px;
+				font-family: Verdana;
+				color: #FFF;
+			}
+			
+			
+			
+			
+			
+			
+			
+			.div_option_move{
+				-webkit-animation-name: anmWhaleMove;
+				-webkit-animation-duration: 4s;
+				-webkit-animation-timing-function: linear;
+				-webkit-animation-iteration-count: 1;
+			}
+			
+			
+			@-webkit-keyframes anmWhaleMove
+            {
+                0% {
+                    opacity: 1.0;
+					-webkit-transform: translate(0px) scale(1.0) rotate(0deg);
+                }
+                25% {
+                    opacity: .90;
+					-webkit-transform: translate(-100px) scale(1.1) rotate(-10deg);
+                }
+                50% {
+                    opacity: .80;
+					-webkit-transform: translate(-300px) scale(1.2) rotate(0deg);
+                }
+                75% {
+                    opacity: .90;
+					-webkit-transform: translate(-700px) scale(1.1) rotate(10deg);
+                }
+                100% {
+                    opacity: 1.0;
+					-webkit-transform: translate(-1000px) scale(1.0) rotate(0deg);
+                }
+                
+            }
+			
+			#div_options{
+				position: absolute;
+				left: 0px;
+				top: 0px;
+			}
+			#div_option_beakedwhale	{
+				width: 147px;
+				height: 34px;
+				position: absolute;
+				left: 800px;
+				top: 383px;
+				background-size: 100%;
+				background: url('img/options_graphics/beakedwhale.png');
+			}
+			#div_option_belugawhale	{
+				width: 95px;
+				height: 43px;
+				position: absolute;
+				left: 641px;
+				top: 374px;
+				background-size: 100%;
+				background: url('img/options_graphics/belugawhale.png');
+			}
+			#div_option_bluewhale	{
+				width: 583px;
+				height: 256px;
+				position: absolute;
+				left: 23px;
+				top: 13px;
+				background-size: 100%;
+				background: url('img/options_graphics/bluewhale.png');
+			}
+			#div_option_bowheadwhale	{
+				width: 350px;
+				height: 132px;
+				position: absolute;
+				left: 18px;
+				top: 288px;
+				background-size: 100%;
+				background: url('img/options_graphics/bowheadwhale.png');
+			}
+			#div_option_finwhale	{
+				width: 473px;
+				height: 100px;
+				position: absolute;
+				left: 519px;
+				top: 481px;
+				background-size: 100%;
+				background: url('img/options_graphics/finwhale.png');
+			}
+			#div_option_humpbackwhale	{
+				width: 238px;
+				height: 103px;
+				position: absolute;
+				left: 598px;
+				top: 232px;
+				background-size: 100%;
+				background: url('img/options_graphics/humpbackwhale.png');
+			}
+			#div_option_killerwhale	{
+				width: 121px;
+				height: 74px;
+				position: absolute;
+				left: 455px;
+				top: 354px;
+				background-size: 100%;
+				background: url('img/options_graphics/killerwhale.png');
+			}
+			#div_option_narwhal	{
+				width: 105px;
+				height: 38px;
+				position: absolute;
+				left: 367px;
+				top: 498px;
+				background-size: 100%;
+				background: url('img/options_graphics/narwhal.png');
+			}
+			#div_option_rightwhale {
+				width: 315px;
+				height: 146px;
+				position: absolute;
+				left: 17px;
+				top: 430px;
+				background-size: 100%;
+				background: url('img/options_graphics/rightwhale.png');
+			}
+			#div_option_spermwhale	{
+				width: 350px;
+				height: 153px;
+				position: absolute;
+				left: 637px;
+				top: 37px;
+				background-size: 100%;
+				background: url('img/options_graphics/spermwhale.png');
+			}
+			
+			</style>
+		
+    </head>
+    <body>
+		<div id="div_container">
+			<div id="div_home_button"></div>
+			<div id="div_prompt"></div>
+		</div>
+		<div id="div_options">
+			<div id="div_option_beakedwhale"></div>
+			<div id="div_option_belugawhale"></div>
+			<div id="div_option_bluewhale"></div>
+			<div id="div_option_bowheadwhale"></div>
+			<div id="div_option_finwhale"></div>
+			<div id="div_option_humpbackwhale"></div>
+			<div id="div_option_killerwhale"></div>
+			<div id="div_option_narwhal"></div>
+			<div id="div_option_rightwhale"></div>
+			<div id="div_option_spermwhale"></div>
+		</div>
+        <script type="text/javascript" src="cordova-2.2.0rc1.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+		</script>
+    </body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements.  See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership.  The ASF licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License.  You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing,
+ software distributed under the License is distributed on an
+ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ KIND, either express or implied.  See the License for the
+ specific language governing permissions and limitations
+ under the License.
+ -->
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Whale Explorer</title>
+		<script>
+			
+			
+			
+			function preventBehavior(e)
+			{
+				e.preventDefault();
+			};
+			
+			function funShowItem(inc_element_id){
+				document.getElementById(inc_element_id).style.visibility = "visible";
+				document.getElementById(inc_element_id).style.display = "block";
+			}
+			
+			function funHideItem(inc_element_id){
+				document.getElementById(inc_element_id).style.visibility = "hidden";
+				document.getElementById(inc_element_id).style.display = "none";
+			}
+			
+			
+			
+			
+			function funHome(){
+				window.location.href = "index.html";
+			}
+			
+			function funChange(){
+				var elmSelect = document.getElementById("select_option");
+				var strValue = elmSelect.options[elmSelect.selectedIndex].value;
+				strValue = "div_option_" + strValue;
+				
+				for (var i=0; i<elmSelect.length; i++){
+					funHideItem("div_option_" + elmSelect.options[i].value);
+				}
+				
+				
+				
+				funShowItem(strValue);
+			}
+			
+			function funStart(){
+				document.getElementById("div_home_button").addEventListener('touchend', function(){funHome();}, false);
+				document.getElementById("select_option").addEventListener('change', function(){funChange();}, false);
+			}
+			
+			
+			
+			
+			
+			</script>
+		<style>
+			body, div, img{
+				margin: 0px;
+				padding: 0px;
+				
+			}
+			#div_container{
+				background: url('img/background.png');
+				background-size: 100%;
+				width: 1024px;
+				height: 748px;
+			}
+			
+			
+			#div_home_button{
+				background: url('img/home.png');
+				background-size: 100%;
+				width: 210px;
+				height: 118px;
+				position: absolute;
+				top: 630px;
+				left: 702px;
+			}
+			#div_select_info{
+				width: 480px;
+				height: 20px;
+				position: absolute;
+				top: 628px;
+				left: 120px;
+				text-align: left;
+				font-size: 20px;
+				font-family: Verdana;
+				color: #FFF;
+			}
+			#select_option{
+				width: 480px;
+				height: 60px;
+				position: absolute;
+				top: 658px;
+				left: 120px;
+				padding: 20px;
+				text-align: center;
+				font-size: 40px;
+				font-family: Verdana;
+				color: #000;
+			}
+			.div_options{
+				visibility: hidden;
+				display: none;
+				position: absolute;
+				left: 20px;
+				top: 70px;
+				width: 756px;
+				height: 340px;
+			}
+			
+			#div_options_background {
+				position: absolute;
+				width: 800px;
+				height: 480px;
+				background: #324158;
+				border-radius: 50% / 10%;
+				color: white;
+				text-align: center;
+				text-indent: .1em;
+				top: 62px;
+				left: 112px;
+			}
+			#div_options_background:before {
+				content: '';
+				position: absolute;
+				top: 10%;
+				bottom: 10%;
+				right: -5%;
+				left: -5%;
+				background: inherit;
+				border-radius: 5% / 50%;
+			}
+			
+			.img_option_image {
+				position: absolute;
+				width: 360px;
+				border: 5px solid #FFF;
+				top: 0px;
+				left: 0px;
+			}
+			
+			.div_option_title {
+				position: absolute;
+				width: 336px;
+				color: #FFF;
+				padding: 10px;
+				top: -16px;
+				left: 400px;
+				text-align: left;
+				font-size: 24px;
+				font-family: Verdana;
+			}
+			
+			.div_option_description {
+				position: absolute;
+				width: 336px;
+				color: #FFF;
+				padding: 10px;
+				top: 50px;
+				left: 400px;
+				text-align: left;
+				font-size: 14px;
+				font-family: Verdana;
+			}
+			.div_option_credit {
+				color: #FFF;
+				margin: 0px 0px 0px 220px;
+			}
+			
+			#div_option_beakedwhale{
+				visibility: visible;
+				display: block;
+			}
+		</style>
+		
+    </head>
+    <body>
+		<div id="div_container">
+			<div id="div_home_button"></div>
+			<div id="div_select_info">Choose a Whale:</div>
+			<select id="select_option">
+				<option value="beakedwhale">Beaked Whale</option>
+				<option value="belugawhale">Beluga Whale</option>
+				<option value="bluewhale">Blue Whale</option>
+				<option value="bowheadwhale">Bowhead Whale</option>
+				<option value="finwhale">Fin Whale</option>
+				<option value="humpbackwhale">Humpback Whale</option>
+				<option value="killerwhale">Killer Whale</option>
+				<option value="narwhal">Narwhal</option>
+				<option value="rightwhale">Right Whale</option>
+				<option value="spermwhale">Sperm Whale</option>
+			</select>
+			<div id="div_options_background">
+				<div class="div_options" id="div_option_beakedwhale">
+					<img class="img_option_image" src="img/options_photos/beakedwhale.jpg"/>
+					<div class="div_option_title">
+						Beaked Whale
+					</div>
+					<div class="div_option_description">
+						Beaked whales are the members of the family Ziphiidae which consists of 21 species. These toothed whales are notable for their elongated beaks. Beaked whales are one of the world's most extreme divers. <br/>
+						<div class="div_option_credit">- Wikipedia</div>
+					</div>
+				</div>
+				<div class="div_options" id="div_option_belugawhale">
+					<img class="img_option_image" src="img/options_photos/belugawhale.jpg"/>
+					<div class="div_option_title">
+						Beluga Whale
+					</div>
+					<div class="div_option_description">
+						The beluga, or white whale, Delphinapterus leucas, is an Arctic and sub-Arctic cetacean. It is one of two members of the family Monodontidae, along with the narwhal, and the only member of the genus Delphinapterus. This marine mammal is commonly referred to simply as the beluga or sea canary due to its high-pitched twitter. Using the term "white whale" to refer to belugas is, in the strictest sense, erroneous, as the term "whale" is usually applied to the Mysticeti (baleen whales) and not to toothed cetaceans which belong to the suborder Odontoceti, which also includes dolphins and porpoises.
+						<br/>
+						<div class="div_option_credit">- Wikipedia</div>
+					</div>
+				</div>
+				<div class="div_options" id="div_option_bluewhale">
+					<img class="img_option_image" src="img/options_photos/bluewhale.jpg"/>
+					<div class="div_option_title">
+						Blue Whale
+					</div>
+					<div class="div_option_description">
+						The blue whale (Balaenoptera musculus) is a marine mammal belonging to the suborder of baleen whales (called Mysticeti). At 30 metres (98 ft) in length and 180 metric tons (200 short tons) or more in weight, it is the largest known animal to have ever existed.
+						<br/>
+						<div class="div_option_credit">- Wikipedia</div>
+					</div>
+				</div>
+				<div class="div_options" id="div_option_bowheadwhale">
+					<img class="img_option_image" src="img/options_photos/bowheadwhale.jpg"/>
+					<div class="div_option_title">
+						Bowhead Whale
+					</div>
+					<div class="div_option_description">
+						The bowhead whale (Balaena mysticetus) is a baleen whale of the right whale family Balaenidae, in suborder Mysticeti and genus Balaena. A stocky dark-colored whale without a dorsal fin, it can grow to 20 m (66 ft) in length. This thick-bodied species can weigh 75 tonnes (74 long tons; 83 short tons) to 100 tonnes (98 long tons; 110 short tons), second only to the blue whale, although the bowhead's maximum length is less than several other whales. It lives entirely in fertile Arctic and sub-Arctic waters, unlike other whales that migrate to feed or reproduce to low latitude waters. It was also known as Greenland right whale or Arctic whale. The bowhead has the largest mouth of any animal.
+						<br/>
+						<div class="div_option_credit">- Wikipedia</div>
+					</div>
+				</div>
+				<div class="div_options" id="div_option_finwhale">
+					<img class="img_option_image" src="img/options_photos/finwhale.jpg"/>
+					<div class="div_option_title">
+						Fin Whale
+					</div>
+					<div class="div_option_description">
+						The fin whale (Balaenoptera physalus), also called the finback whale, razorback, or common rorqual, is a marine mammal belonging to the suborder of baleen whales. It is the second longest animal in the world and second largest rorqual after the blue whale, growing to 27.3 metres (89.5 ft) long and weighing nearly 74 tonnes (73 long tons; 82 short tons). The American naturalist Roy Chapman Andrews called the fin whale "the greyhound of the sea... for its beautiful, slender body is built like a racing yacht and the animal can surpass the speed of the fastest ocean steamship."
+						<br/>
+						<div class="div_option_credit">- Wikipedia</div>
+					</div>
+				</div>
+				<div class="div_options" id="div_option_humpbackwhale">
+					<img class="img_option_image" src="img/options_photos/humpbackwhale.jpg"/>
+					<div class="div_option_title">
+						Humpback Whale
+					</div>
+					<div class="div_option_description">
+						The humpback whale (Megaptera novaeangliae) is a species of baleen whale. One of the larger rorqual species, adults range in length from 12–16 metres (39–52 ft) and weigh approximately 36,000 kilograms (79,000 lb). The humpback has a distinctive body shape, with unusually long pectoral fins and a knobbly head. An acrobatic animal known for breaching and slapping the water with its tail and pectorals, it is popular with whale watchers off Australia, New Zealand, South America, Canada, and the United States.
+						<br>
+						<div class="div_option_credit">- Wikipedia</div>
+					</div>
+				</div>
+				<div class="div_options" id="div_option_killerwhale">
+					<img class="img_option_image" src="img/options_photos/killerwhale.jpg"/>
+					<div class="div_option_title">
+						Killer Whale
+					</div>
+					<div class="div_option_description">
+						The killer whale (Orcinus orca), also referred to as the orca whale or orca, and less commonly as the blackfish, is a toothed whale belonging to the oceanic dolphin family. Killer whales are found in all oceans, from the frigid Arctic and Antarctic regions to tropical seas. Killer whales as a species have a diverse diet, although individual populations often specialize in particular types of prey. Some feed exclusively on fish, while others hunt marine mammals such as sea lions, seals, walruses, and even large whales. Killer whales are regarded as apex predators, lacking natural predators. 
+						<br/>
+						<div class="div_option_credit">- Wikipedia</div>
+					</div>
+				</div>
+				<div class="div_options" id="div_option_narwhal">
+					<img class="img_option_image" src="img/options_photos/narwhal.jpg"/>
+					<div class="div_option_title">
+						Narwhal
+					</div>
+					<div class="div_option_description">
+						The narwhal, or narwhale, Monodon monoceros, is a medium-sized toothed whale that lives year-round in the Arctic. One of two living species of whale in the Monodontidae family, along with the beluga whale, narwhal males are distinguished by a long, straight, helical tusk, actually an elongated upper left canine. Found primarily in Canadian Arctic and Greenlandic waters, rarely south of 65°N latitude, the narwhal is a uniquely specialized Arctic predator. In the winter, it feeds on benthic prey, mostly flatfish, at depths of up to 1500 m under dense pack ice. 
+						<br/>
+						<div class="div_option_credit">- Wikipedia</div>
+					</div>
+				</div>
+				<div class="div_options" id="div_option_rightwhale">
+					<img class="img_option_image" src="img/options_photos/rightwhale.jpg"/>
+					<div class="div_option_title">
+						Right Whale
+					</div>
+					<div class="div_option_description">
+						Right whales are three species of large baleen whales of the genus Eubalaena. They consist of three species; the North Atlantic right whale (E. glacialis), the North Pacific right whale (E. japonica) and the southern right whale (E. australis). Right whales have rotund bodies with arching rostrums, V-shaped blowholes and dark gray or black skin. The most distinguishing feature of a right whale is the rough patches of skin (callosities) on its head which appear white due to parasitism by whale lice. Right whales can grow up to 18 m (59 ft) long and weigh up to 100 short tons (91 t; 89 long tons), significantly larger than humpbacks or grays, but smaller than blues. 
+						<br/>
+						<div class="div_option_credit">- Wikipedia</div>
+					</div>
+				</div>
+				<div class="div_options" id="div_option_spermwhale">
+					<img class="img_option_image" src="img/options_photos/spermwhale.jpg"/>
+					<div class="div_option_title">
+						Sperm Whale
+					</div>
+					<div class="div_option_description">
+						The sperm whale (Physeter macrocephalus) is a large toothed whale (odontocete) belonging to the order Cetacea. It is the only living member of genus Physeter, and one of three extant species in the sperm whale family, along with the pygmy sperm whale and dwarf sperm whale of the genus Kogia. A marine mammal, it possesses the largest brain of any animal. Its name derives from a milky-white waxy substance, spermaceti, found in its enormous head.
+						<br/>
+						<div class="div_option_credit">- Wikipedia</div>
+					</div>
+				</div>
+			</div>
+		</div>
+        <script type="text/javascript" src="cordova-2.2.0rc1.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+			</script>
+    </body>
+</html>
